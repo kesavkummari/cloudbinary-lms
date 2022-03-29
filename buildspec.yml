@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+    commands:
+      - echo install phase
+  pre_build:
+    commands:
+      - cd $CODEBUILD_SRC_DIR/
+      - pwd
+      - ls -lrta
+      - cd cblms
+      - npm install
+  build:
+    commands:
+      - echo Build Started
+      - pwd
+      - ls -lrta
+      - npm run build
+  post_build:
+    commands:
+      - echo post build
+      - pwd
+      - ls -ltra dist
+      - cd dist
+      - ls -lrta cblms
+      - aws s3 cp * s3://cblms --recursive
+artifacts:
+  files:
+    #- cblms/dist/**/*
