@@ -23,10 +23,10 @@ phases:
     commands:
       - echo post build
       - pwd
-      - ls -ltra dist
-      - cd dist
-      - ls -lrta cblms
-      - aws s3 cp * s3://cblms --recursive
+      - ls -ltra 
+      - cd dist/cblms
+      - ls -lrta 
+      - aws s3 sync . s3://codewithck.com/
 artifacts:
   files:
     #- cblms/dist/**/*
