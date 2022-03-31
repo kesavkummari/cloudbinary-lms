@@ -27,6 +27,7 @@ phases:
       - cd dist/cblms
       - ls -lrta 
       - aws s3 sync . s3://codewithck.com/
+      - aws cloudfront create-invalidation --distribution-id E1F54F1MPID61Y --paths "/*"
 artifacts:
   files:
     #- cblms/dist/**/*
